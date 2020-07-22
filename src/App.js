@@ -1,7 +1,7 @@
 import React from "react";
 
 const App=()=> {
-  const[Array,setArray]=React.useState([]);
+  const[Array1,setArray1]=React.useState([]);
   const [first, setFirst] = React.useState([]);
   const [last, setLast] = React.useState([]);
   const [email, setEmail] = React.useState([]);
@@ -12,22 +12,17 @@ const App=()=> {
   const[food,setFood]=React.useState([]);
   const[state,setState]=React.useState([]);
   const[select,setSelect]=React.useState([]);
-  // const selection = [
-  //   {
-  //     name: "INDIA",
-  //     states: ["tamilnadu", "kerala", "Delhi"],
-  //   },
-  //   {
-  //     name: "USA",
-  //     states: ["New York", "California", "Texas"],
-  //   },
-  // ];
-  // // function random_function(e) {
-     
-  // //   setCountry(e.target.value);
-  // //   setState(selection.filter((value, i) => value.name == e.target.value)[0].states);
-    
-  // // }
+  const selection = [
+    {
+      name: "INDIA",
+      states: ["tamilnadu", "kerala", "Delhi"],
+    },
+    {
+      name: "USA",
+      states: ["New York", "California", "Texas"],
+    },
+  ];
+  
   
   function handleEnter(event) {
     if (event.keyCode === 13) {
@@ -41,7 +36,7 @@ const App=()=> {
    if(password==repassword){
               return(
             
-   setArray(Array.concat([{first,last,email,password,marr,food,country},]),
+   setArray1(Array1.concat([{first,last,email,password,marr,food,country},]),
 
    
 //alert(first,last,email,password,repassword);
@@ -71,12 +66,13 @@ const App=()=> {
           height: "800px",
           float: "left",
         }}
-      >
+      > <form>
         <label>enter your first name</label>
         <input
           type="text"
           value={first}
           onChange={(e) => setFirst(e.target.value)}
+          onKeyDown={handleEnter}
         />
         <br></br>
         <br></br>
@@ -85,6 +81,7 @@ const App=()=> {
           type="text"
           value={last}
           onChange={(e) => setLast(e.target.value)}
+          onKeyDown={handleEnter}
         />
         <br></br>
         <br></br>
@@ -93,6 +90,7 @@ const App=()=> {
           type="text"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          onKeyDown={handleEnter}
         />
         <br></br>
         <br></br>
@@ -101,6 +99,7 @@ const App=()=> {
           type="text"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          onKeyDown={handleEnter}
         />
         <br></br>
         <br></br>
@@ -109,26 +108,28 @@ const App=()=> {
           type="text"
           value={repassword}
           onChange={(e) => setRepassword(e.target.value)}
+          onKeyDown={handleEnter}
         />
+        </form>
         <br></br>
         <br></br>
         <label>Matrial status</label>
 
         <form action="/action_page.php">
-          <input type="radio"  name="status" value="single" onChange={(e)=>setMarr(e.target.value)} />
+          <input type="radio"  name="status" value="single" onChange={(e)=>setMarr(e.target.value)} onKeyDown={handleEnter} />
           <label >Single</label>
           <br></br>
-          <input type="radio" name="status" value="married" onChange={(e)=>setMarr(e.target.value)}/>
+          <input type="radio" name="status" value="married" onChange={(e)=>setMarr(e.target.value)} onKeyDown={handleEnter}/>
           <label >Married</label>
           <br></br>
-          <input type="radio" name="status" value="cant say" onChange={(e)=>setMarr(e.target.value)}/>
+          <input type="radio" name="status" value="cant say" onChange={(e)=>setMarr(e.target.value)} onKeyDown={handleEnter}/>
           <label >Can't say</label>
         </form>
         <br></br>
 
         <form action="/action_page.php">
           <label> choose your food</label>
-          <select name="foods" id="foods" onChange={(e)=>setFood(e.target.value)}>
+          <select name="foods" id="foods" onChange={(e)=>setFood(e.target.value)} onKeyDown={handleEnter}>
             <option value="Briyani">Briyani</option>
             <option value="Thandoori">Thandoori</option>
             <option value="Icecream">IceCream</option>
@@ -138,7 +139,7 @@ const App=()=> {
         <br></br>
         <form action="/action_page.php">
           <label> choose your country</label>
-          <select name="country" id="country" onChange={(e)=>setCountry(e.target.value)}>
+          <select name="country" id="country" onChange={(e)=>setCountry(e.target.value)} onKeyDown={handleEnter}>
             <option value="India">India</option>
             <option value="America">America</option>
           </select>
@@ -147,10 +148,8 @@ const App=()=> {
             <br />
             <label>Select state:</label>
             <select onChange={(e) => setSelect(e.target.value)} onKeyDown={handleEnter}>
-              <option>--Choose State--</option>
-              {state.map((data, i) => {
-                return <option key={i}>{data}</option>;
-              })}
+              <option>Choose State</option>
+              
             </select>
          <button onClick={()=>display()}>submit</button>
          
@@ -177,7 +176,7 @@ const App=()=> {
             </tr>
           </thead>
           <tbody>
-            {Array.map((val, index) => (
+            {Array1.map((val, index) => (
               <tr key={index}>
                 <td>{val.first}</td>
                 <td>{val.last}</td>
